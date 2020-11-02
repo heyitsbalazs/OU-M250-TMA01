@@ -27,6 +27,11 @@ public class CreditCardChecker {
         return this.longNumber.substring(0, 15);
     }
 
+    private Integer lastNumber()
+    {
+        return Integer.parseInt(this.longNumber.substring(15, 16));
+    }
+
     public int findC(int S) {
         int result = S / 10;
         result = result * 10;
@@ -35,7 +40,7 @@ public class CreditCardChecker {
         return result;
     }
 
-    public int calculateCheckNumber() {
+    public Integer calculateCheckNumber() {
         String cardNumbersToCheck = this.firstFifteen();
         int S = 0;
         boolean isEven = true;
@@ -61,5 +66,20 @@ public class CreditCardChecker {
         }
 
         return this.findC(S);
+    }
+
+    public Boolean validNumberResult() {
+        if (!this.isCorrectLength()) {
+            System.out.println("Isn't valid");
+            return false;
+        }
+
+        if (!this.calculateCheckNumber().equals(this.lastNumber())) {
+            System.out.println("Isn't valid");
+            return false;
+        }
+
+        System.out.println("Could be valid");
+        return true;
     }
 }

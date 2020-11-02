@@ -21,37 +21,44 @@ public class CreditCardCheckerTest {
     }
 
     @Test
-    public void testGetLongNumber() throws Exception {
+    public void testGetLongNumber() {
         CreditCardChecker checker = new CreditCardChecker("4485735287746637");
 
         assertEquals("4485735287746637", checker.getLongNumber());
     }
 
     @Test
-    public void testIsCorrectLength() throws Exception {
+    public void testIsCorrectLength() {
         CreditCardChecker checker = new CreditCardChecker("4485735287746637");
 
         assertTrue(checker.isCorrectLength());
     }
 
     @Test
-    public void testFirstFifteen() throws Exception {
+    public void testFirstFifteen() {
         CreditCardChecker checker = new CreditCardChecker("4485735287746637");
 
         assertEquals("448573528774663", checker.firstFifteen());
     }
 
     @Test
-    public void testFindC() throws Exception {
+    public void testFindC() {
         CreditCardChecker checker = new CreditCardChecker("4485735287746637");
 
         assertEquals(2, checker.findC(78));
     }
 
     @Test
-    public void testCalculateCheckNumber() throws Exception {
+    public void testCalculateCheckNumber() {
         CreditCardChecker checker = new CreditCardChecker("4916592478445662");
 
-        assertEquals(2, checker.calculateCheckNumber());
+        assertEquals(Integer.valueOf(2), checker.calculateCheckNumber());
+    }
+
+    @Test
+    public void testValidNumberResult() {
+        CreditCardChecker checker = new CreditCardChecker("4916592478445662");
+
+        assertEquals(true, checker.validNumberResult());
     }
 } 
