@@ -42,9 +42,16 @@ public class CreditCardCheckerTest {
     }
 
     @Test
-    public void testCalculateCheckNumber() throws Exception {
+    public void testFindC() throws Exception {
         CreditCardChecker checker = new CreditCardChecker("4485735287746637");
 
         assertEquals(2, checker.findC(78));
+    }
+
+    @Test
+    public void testCalculateCheckNumber() throws Exception {
+        CreditCardChecker checker = new CreditCardChecker("4916592478445662");
+
+        assertEquals(2, checker.calculateCheckNumber());
     }
 } 

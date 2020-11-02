@@ -27,15 +27,39 @@ public class CreditCardChecker {
         return this.longNumber.substring(0, 15);
     }
 
-    private int findC(int s) {
-        int result = s / 10;
+    public int findC(int S) {
+        int result = S / 10;
         result = result * 10;
         result = result + 10;
-        result = result - s;
+        result = result - S;
         return result;
     }
 
-    public calculateCheckNumber() {
-        String iterableLongNumber = this.firstFifteen();
+    public int calculateCheckNumber() {
+        String cardNumbersToCheck = this.firstFifteen();
+        int S = 0;
+        boolean isEven = true;
+
+        // Iterate through each character in adjusted longNumber string
+        for (char numberChar: cardNumbersToCheck.toCharArray()) {
+            // String -> Integer
+            int number = Character.getNumericValue(numberChar);
+
+            // Only multiply (and subsequently subtract from)
+            if (isEven) {
+                number = number * 2;
+
+                if (number > 9) {
+                    number = number - 9;
+                }
+            }
+
+            // Whatever we may have done with "number", let's add it to our result variable
+            S = S + number;
+
+            isEven = !isEven;
+        }
+
+        return this.findC(S);
     }
 }
